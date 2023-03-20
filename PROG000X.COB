@@ -41,9 +41,9 @@
       *suas variáveis.
        01  CLIENTE.
             02 NOME    PIC X(50) VALUE "UELBER PEREIRA DE JESUS".
-            02 RG      PIC 9(15) VALUE 04028173540.
-            02 CPF     PIC 9(15) VALUE 1200766164.
-            02 ENDERECO    PIC X(50) VALUE "ANOTONIO VALENCA ROSA 411".
+            02 RG      PIC 9(15) VALUE 01224512121.
+            02 CPF     PIC 9(15) VALUE 4454545454.
+            02 ENDERECO    PIC X(50) VALUE "ANOTONIO VALENCA ROSA 000".
             02 DATANASC.
                03 DIA      PIC X(03) VALUE "19/".
                03 MES      PIC XXX VALUE "04/".
