@@ -37,7 +37,7 @@
        77  NUMEROX-DECIMAL   PIC 9(07).
        77  NOMEX              PIC A(20).
        77  NOMENUMERO        PIC X(30).
-      *Neste campo vamos declara uma classe cleiente que é de nível 01 e depois*
+      *Neste campo vamos declarar uma classe cleiente que é de nível 01 e depois*
       *suas variáveis.
        01  CLIENTE.
             02 NOME    PIC X(50) VALUE "UELBER PEREIRA DE JESUS".
@@ -48,17 +48,28 @@
                03 DIA      PIC X(03) VALUE "19/".
                03 MES      PIC XXX VALUE "04/".
                03 ANO      PIC XXXX VALUE "1988".
+               66 MES-ANO RENAMES MES THRU ANO.
+      *No nível 66, juntamos duas variáveis em uma.
+      *>   Os valores que adicionei em xxx são a mesma coisa que declarar x(03)
+       01 GENERO PIC X.
+           88 MASCULINO VALUE "M".
+           88 FEMININO  VALUE "F".
+
 
       *------------------------------------------------------------------------*
 
       *========================================================================*
        PROCEDURE                                   DIVISION.
       *========================================================================*
-
+           SET MASCULINO TO TRUE.
            DISPLAY "||IMPRIMINDO CADASTRO DO CLIENTE||"
            DISPLAY "NOME: " NOME.
            DISPLAY "RG: " RG.
            DISPLAY "CPF: " CPF.
-           DISPLAY "ENDEREÇO: " ENDERECO
+           DISPLAY "ENDERECO: " ENDERECO
            DISPLAY "DATA DE NASCIMENTO: " DATANASC.
+           DISPLAY "IMPRIMINDO VARIAVEIS UNIDAS: " MES-ANO.
+               IF MASCULINO
+           DISPLAY "SEXO: " GENERO.
+
            STOP RUN.
