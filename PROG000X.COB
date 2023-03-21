@@ -35,9 +35,9 @@
        77  NUMEROX           PIC 9(07).
        77  NUMEROX-SINAL     PIC S9(07).
        77  NUMEROX-DECIMAL   PIC 9(07).
-       77  NOMEX              PIC A(20).
+       77  NOMEX             PIC A(20).
        77  NOMENUMERO        PIC X(30).
-      *Neste campo vamos declarar uma classe cleiente que é de nível 01 e depois*
+      *Neste campo vamos declarar uma classe cliente que é de nível 01 e depois*
       *suas variáveis.
        01  CLIENTE.
             02 NOME    PIC X(50) VALUE "UELBER PEREIRA DE JESUS".
