@@ -41,7 +41,9 @@
        77  WS-DATA              PIC 9(06) VALUE ZEROS.
        77  WS-DATA-JULIANA      PIC 9(05) VALUE ZEROS.
        77  WS-DIA               PIC 9(01) VALUE ZERO.
-       77  WS-HORA              PIC 9(8)  VALUE ZEROS.
+       77  WS-HORA              PIC 9(08) VALUE ZEROS.
+       77  WS-VALOR1            PIC 9(10) VALUE 22.
+       77  WS-VALOR2            PIC 9(10) VALUE 19.
 
 
 
@@ -63,6 +65,10 @@
            88 MASCULINO VALUE "M".
            88 FEMININO  VALUE "F".
 
+       01  WS-TOT.
+            05 WS-TOTAL    PIC 9(5) VALUE 59.
+       01  WS-TOT2.
+            05 WS-TOTAL    PIC 9(5) VALUE ZEROS.
 
       *------------------------------------------------------------------------*
 
@@ -90,4 +96,8 @@
            DISPLAY "DIA DA SEMANA: " WS-DIA.
                    ACCEPT WS-HORA FROM TIME.
            DISPLAY "HORARIO DA TRANSACAO: " WS-HORA.
+                   MOVE WS-VALOR2 TO WS-VALOR1.
+           DISPLAY "NOVO VALOR ATRIBUDO A VARIAVEL: " WS-VALOR1.
+                   MOVE WS-TOTAL OF WS-TOT TO WS-VALOR1.
+           DISPLAY "NOVO VALOR ATRIBUIDO: " WS-VALOR1.
            STOP RUN.
