@@ -18,7 +18,9 @@
                03 WS-RUA      PIC X(20) VALUE SPACES.
 
 
-       77 WS-ACUMULADOR       PIC 9(02) VALUE 99.
+       77 WS-ACUMULADOR       PIC 9(03) VALUE 100.
+       77 WS-ACUMULADOR2      PIC 9(02) VALUE ZEROS.
+       77 WS-ACUMULADOR3      PIC 9(02)V9(02) VALUE ZEROS.
 
 
 
@@ -41,6 +43,15 @@
       *>          ACCEPT WS-RUA.
       *>       DISPLAY "NOME DA RUA: " WS-RUA.
             DISPLAY "VALOR DO ACUMULADOR: " WS-ACUMULADOR.
+      *>       ENTENDENDO O COMANDO COMPUTE
+            COMPUTE WS-ACUMULADOR2 = WS-ACUMULADOR /2
+            DISPLAY "VALOR DA VARIAVEL DIVIDIDA: " WS-ACUMULADOR2
+            COMPUTE WS-ACUMULADOR3 = (WS-ACUMULADOR +
+                                       WS-ACUMULADOR2) / 2
+                ON SIZE ERROR
+                   DISPLAY "ERROR"
+            END-COMPUTE.
+            DISPLAY "VALOR DA SOMA MAIS DIVISAO: " WS-ACUMULADOR3
 
 
 
