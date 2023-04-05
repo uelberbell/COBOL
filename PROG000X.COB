@@ -47,8 +47,8 @@
 
 
 
-      *Neste campo vamos declarar uma classe cliente que é de nível 01 e depois*
-      *suas variáveis.
+      *Neste campo vamos declarar uma classe cliente que ï¿½ de nï¿½vel 01 e depois*
+      *suas variï¿½veis.
        01  CLIENTE.
             02 NOME    PIC X(50) VALUE "UELBER PEREIRA DE JESUS".
             02 RG      PIC 9(15) VALUE 01224512121.
@@ -59,8 +59,8 @@
                03 MES      PIC XXX VALUE "04/".
                03 ANO      PIC XXXX VALUE "1988".
                66 MES-ANO RENAMES MES THRU ANO.
-      *No nível 66, juntamos duas variáveis em uma.
-      *>   Os valores que adicionei em xxx são a mesma coisa que declarar x(03)
+      *No nivel 66, juntamos duas variÃ¡veis em uma.
+      *>   Os valores que adicionei em xxx sï¿½o a mesma coisa que declarar x(03)
        01 GENERO PIC X.
            88 MASCULINO VALUE "M".
            88 FEMININO  VALUE "F".

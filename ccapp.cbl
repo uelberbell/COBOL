@@ -1,5 +1,5 @@
       ******************************************************************
-      * Author:
+      * Author: Uelber Pereira de Jesus
       * Date:
       * Purpose:
       * Tectonics: cobc
@@ -15,7 +15,7 @@
        77 RES              PIC 9(03) VALUE ZEROS.
        77 CALC             PIC A(01).
       *>  77 RESTO            PIC 9(02)v9(02) VALUE ZEROS.
-
+       
        PROCEDURE DIVISION.
 
            DISPLAY "--NESTE PROGRAMA VAMOS REALIZAR CALCULOS--"
@@ -32,7 +32,7 @@
                    COMPUTE  RES EQUAL NUM1 + NUM2
                    DISPLAY "RESULTADO DA SOMA: " RES
                 END-IF
-
+               
                IF CALC = "-"
                    SUBTRACT NUM1 FROM NUM2 GIVING RES
                    DISPLAY "RESULTADO DA SUBTRACAO: " RES
@@ -46,7 +46,6 @@
                IF CALC = "/"
                    DIVIDE NUM1 BY NUM2 GIVING RES
                    DISPLAY "RESULTADO DA DIVISAO: " RES
-
                END-IF
 
             STOP RUN.
