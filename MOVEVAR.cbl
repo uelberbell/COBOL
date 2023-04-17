@@ -26,6 +26,7 @@
            MOVE NOME (1:6) TO NOME2.
 
        MAIN-PROCEDURE.
+            DISPLAY 'ISSO É APENAS UM TESTE'
             DISPLAY "PRIMEIRO NOME: " NOME
             DISPLAY "NOME QUE FOI MOVIDO: " NOME2
 
