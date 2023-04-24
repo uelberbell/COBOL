@@ -19,16 +19,9 @@
        01 WS-ALUNO.
            02 WS-NOME              PIC A(30) VALUE SPACES.
            02 WS-MEDIA             PIC 9(02)V9(02).
+           02 WS-MATERIA           PIC A(20) VALUE SPACES.
+           02 WS-STATUS            PIC A(10) VALUE SPACES.
 
-       01 WS-STATUS                PIC X(10).
-           88 APROVADO  VALUE 7,0 THRU 10,00.
-           88 REPROVADO VALUE 0,0 THRU 4,5.
-
-       01 WS-MATERIAS.
-           02 WS-MATERIA1          PIC A(15) VALUE SPACES.
-           02 WS-MATERIA2          PIC A(15) VALUE SPACES.
-           02 WS-MATERIA3          PIC A(15) VALUE SPACES.
-           02 WS-MATERIA4          PIC A(15) VALUE SPACES.
 
        01 WS-NOTAS.
            02 WS-NOTA1                PIC 9(02)V99.
@@ -36,10 +29,23 @@
            02 WS-NOTA3                PIC 9(02)V99.
            02 WS-NOTA4                PIC 9(02)V99.
 
+       77 WS-SOMA                     PIC 9(02)V9(02).
+       77 WS-CONDICAO                 PIC A(01).
+       77 WS-DATACONS                 PIC X(10).
+
+
 
        PROCEDURE DIVISION.
-                   PERFORM P00-INICIO.
-                   PERFORM P200-RESULT.
+                   PERFORM P00-INICIO
+                   PERFORM P00-CAPT1       THRU    P00-CAPT4.
+                   PERFORM P100-CALC       THRU    P200-RESULT.
+                   PERFORM PCOND-00
+                   PERFORM P300-FIM.
+
+
+                   INITIALISE WS-MEDIA
+                              WS-NOTAS.
+
 
        P00-INICIO.
 
@@ -50,42 +56,105 @@
 
             DISPLAY "DIGITE O NOME DO ALUNO: "
             ACCEPT WS-NOME.
+            DISPLAY "DIGITE A MATERIA: "
+            ACCEPT WS-MATERIA.
 
-            DISPLAY "DIGITE A MATERIA 1: "
-            ACCEPT WS-MATERIA1
-            DISPLAY "DIGITE A NOTA PARA A MATERIA: " WS-MATERIA1
+
+
+       P00-ERRO.
+               DISPLAY "ALGO DEU ERRADO, VERIFIQUE E TENTE NOVAMENTE!".
+
+
+       P00-CAPT1.
+            DISPLAY "DIGITE A PRIMEIRA NOTA PARA A MATERIA: " WS-MATERIA
             ACCEPT WS-NOTA1
+               IF (WS-NOTA1 <= 0) OR (WS-NOTA1 > 10) OR WS-NOTA1 NOT
+                   IS NUMERIC THEN
+                   DISPLAY "*********************************"
+                   DISPLAY "*****VALOR DIGITADO INVALIDO*****"
+                   DISPLAY "*********************************"
+                   PERFORM P00-CAPT1
+               END-IF.
 
-            DISPLAY "DIGITE A MATERIA 2: "
-            ACCEPT WS-MATERIA2
-            DISPLAY " DIGITE A NOTA PARA A MATERIA: " WS-MATERIA2
+
+
+       P00-CAPT2.
+            DISPLAY "DIGITE A SEGUNDA NOTA PARA A MATERIA: " WS-MATERIA
             ACCEPT WS-NOTA2
+            IF (WS-NOTA2 <= 0) OR (WS-NOTA2 > 10) OR WS-NOTA2 NOT
+                   IS NUMERIC THEN
+                   DISPLAY "*********************************"
+                   DISPLAY "*****VALOR DIGITADO INVALIDO*****"
+                   DISPLAY "*********************************"
+                   PERFORM P00-CAPT2
+               END-IF.
 
-            DISPLAY "DIGITE A MATERIA 3: "
-            ACCEPT WS-MATERIA3
-            DISPLAY "DIGITE A NOTA PARA A MATERIA: " WS-MATERIA3
+
+
+       P00-CAPT3.
+            DISPLAY "DIGITE A TERCEIRA NOTA PARA A MATERIA: " WS-MATERIA
             ACCEPT WS-NOTA3
+            IF (WS-NOTA3 <= 0) OR (WS-NOTA3 > 10) OR WS-NOTA3 NOT
+                   IS NUMERIC THEN
+                   DISPLAY "*********************************"
+                   DISPLAY "*****VALOR DIGITADO INVALIDO*****"
+                   DISPLAY "*********************************"
+                   PERFORM P00-CAPT3
+               END-IF.
 
-            DISPLAY "DIGUTE A MATERIA 4: "
-            ACCEPT WS-MATERIA4
-            DISPLAY "DIGITE A NOTA PARA A MATERIA: " WS-MATERIA4
+
+
+       P00-CAPT4.
+            DISPLAY "DIGITE A QUARTA NOTA PARA A MATERIA: " WS-MATERIA
             ACCEPT WS-NOTA4.
+            IF (WS-NOTA4 <= 0) OR (WS-NOTA4 > 10) OR WS-NOTA4 NOT
+                   IS NUMERIC THEN
+                   DISPLAY "*********************************"
+                   DISPLAY "*****VALOR DIGITADO INVALIDO*****"
+                   DISPLAY "*********************************"
+                   PERFORM P00-CAPT4
+                   END-IF.
 
-       P99-ERRO.
 
-            DISPLAY "VERIFIQUE OS DADOS DIGITADOS, ALGO ESTÁ ERRADO".
 
        P100-CALC.
+               COMPUTE WS-SOMA = WS-NOTA1 + WS-NOTA2 + WS-NOTA3 +
+                                                       WS-NOTA4.
+               COMPUTE WS-MEDIA = WS-SOMA / 4.
+               IF (WS-MEDIA <= 6,9) THEN
+                   MOVE "REPROVADO" TO WS-STATUS
+                   ELSE MOVE "APROVADO" TO WS-STATUS.
+
+               ACCEPT WS-DATACONS FROM DATE.
        P200-RESULT.
-
             DISPLAY "*** RESULTADO DO PROCESSAMENTO ***".
-
+            DISPLAY "__________________________________"
+            DISPLAY "**********************************"
             DISPLAY "NOME DO ALUNO:     " WS-NOME.
-            DISPLAY "MATÉRIA:           " WS-MATERIA1.
+            DISPLAY "MATERIA:           " WS-MATERIA.
             DISPLAY "MEDIA:             " WS-MEDIA.
             DISPLAY "STATUS:            " WS-STATUS.
+            DISPLAY "NOTAS              " WS-NOTAS.
+            DISPLAY "A SOMA DAS NOTAS:  " WS-SOMA.
+            DISPLAY "DATA CONSULTA:     " WS-DATACONS.
+            DISPLAY "**********************************"
+            DISPLAY "__________________________________".
 
+
+       PCOND-00.
+        DISPLAY "*****************************************************"
+        DISPLAY "DESEJA CONTINUAR: DIGITE 'S' PARA SIM OU 'N' PARA NAO".
+           ACCEPT WS-CONDICAO
+               IF (WS-CONDICAO = "S") OR (WS-CONDICAO = "s") PERFORM
+                                       P00-INICIO THRU PCOND-00
+               ELSE  IF WS-CONDICAO = "N" OR WS-CONDICAO = "n" PERFORM
+                                                               P300-FIM
+               ELSE
+                   DISPLAY "**********************************"
+                   DISPLAY "VOCE NAO DIGITOU UMA OPCAO VALIDA!"
+                   DISPLAY "**********************************"
+                   PERFORM PCOND-00.
        P300-FIM.
-
+            DISPLAY "SISTEMA FINALIZADO COM SUCESSO!!"
             STOP RUN.
        END PROGRAM CFPP999D.
