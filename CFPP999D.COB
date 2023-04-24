@@ -5,9 +5,14 @@
       * Tectonics: COBOL
       ******************************************************************
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. YOUR-PROGRAM-NAME.
+       PROGRAM-ID. CFPP999D.
+       ENVIRONMENT DIVISION.
+       CONFIGURATION SECTION.
+       SPECIAL-NAMES.
+           DECIMAL-POINT IS COMMA.
        DATA DIVISION.
        FILE SECTION.
+
        WORKING-STORAGE SECTION.
 
 
@@ -16,8 +21,8 @@
            02 WS-MEDIA             PIC 9(02)V9(02).
 
        01 WS-STATUS                PIC X(10).
-           88 APROVADO  VALUE 7.0 THRU 10.00.
-           88 REPROVADO VALUE 0.0 THRU 4.5.
+           88 APROVADO  VALUE 7,0 THRU 10,00.
+           88 REPROVADO VALUE 0,0 THRU 4,5.
 
        01 WS-MATERIAS.
            02 WS-MATERIA1          PIC A(15) VALUE SPACES.
@@ -83,4 +88,4 @@
        P300-FIM.
 
             STOP RUN.
-       END PROGRAM YOUR-PROGRAM-NAME.
+       END PROGRAM CFPP999D.
