@@ -6,6 +6,10 @@
       ******************************************************************
        IDENTIFICATION DIVISION.
        PROGRAM-ID. PROGCHAMADOR.
+       ENVIRONMENT DIVISION.
+       CONFIGURATION SECTION.
+       SPECIAL-NAMES.
+       DECIMAL-POINT IS COMMA.
        DATA DIVISION.
        FILE SECTION.
        WORKING-STORAGE SECTION.

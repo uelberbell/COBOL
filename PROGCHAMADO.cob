@@ -19,6 +19,7 @@
            DISPLAY "PROGRAMA CHAMDO"
            DISPLAY 'RECEBEU WS-NUM1:' WS-NUM1
            DISPLAY 'RECEBU WS-NUM2: ' WS-NUM2
+           
 
            COMPUTE WS-RETURN = WS-NUM1 + WS-NUM2
 
