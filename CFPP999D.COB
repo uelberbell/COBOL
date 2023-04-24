@@ -1,7 +1,7 @@
       ******************************************************************
       * Author:Uelber Pereira de Jesus
       * Date:21/04/2023
-      * Purpose: Calculas Num boletim escolar
+      * Purpose: Calcular boletim escolar
       * Tectonics: COBOL
       ******************************************************************
        IDENTIFICATION DIVISION.
@@ -119,11 +119,18 @@
 
        P100-CALC.
                COMPUTE WS-SOMA = WS-NOTA1 + WS-NOTA2 + WS-NOTA3 +
-                                                       WS-NOTA4.
-               COMPUTE WS-MEDIA = WS-SOMA / 4.
+                                                       WS-NOTA4
+                   ON SIZE ERROR PERFORM P00-ERRO
+               END-COMPUTE.
+
+               COMPUTE WS-MEDIA = WS-SOMA / 4
+               ON SIZE ERROR PERFORM P00-ERRO
+               END-COMPUTE.
+
                IF (WS-MEDIA <= 6,9) THEN
                    MOVE "REPROVADO" TO WS-STATUS
                    ELSE MOVE "APROVADO" TO WS-STATUS.
+
 
                ACCEPT WS-DATACONS FROM DATE.
        P200-RESULT.
