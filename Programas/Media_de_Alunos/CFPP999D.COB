@@ -124,7 +124,7 @@
                END-COMPUTE.
 
                COMPUTE WS-MEDIA = WS-SOMA / 4
-               ON SIZE ERROR PERFORM P00-ERRO
+                   ON SIZE ERROR PERFORM P00-ERRO
                END-COMPUTE.
 
                IF (WS-MEDIA <= 6,9) THEN
@@ -153,7 +153,7 @@
         DISPLAY "DESEJA CONTINUAR: DIGITE 'S' PARA SIM OU 'N' PARA NAO".
            ACCEPT WS-CONDICAO
                IF (WS-CONDICAO = "S") OR (WS-CONDICAO = "s") PERFORM
-                                       P00-INICIO THRU PCOND-00
+                                            P00-INICIO THRU PCOND-00
                ELSE  IF WS-CONDICAO = "N" OR WS-CONDICAO = "n" PERFORM
                                                                P300-FIM
                ELSE
