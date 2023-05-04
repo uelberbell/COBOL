@@ -21,9 +21,9 @@
 
        DATA DIVISION.
        FILE SECTION.
-       FD CONTATOS
+       FD CONTATOS.
            01 REG-CONTATOS.
-               03 CD-CONTATO       PIC 9(05).
+               03 ID-CONTATO       PIC 99.
                03 NM-CONTATO       PIC X(15).
 
        WORKING-STORAGE SECTION.
