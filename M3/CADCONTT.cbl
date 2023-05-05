@@ -13,16 +13,17 @@
            INPUT-OUTPUT SECTION.
            FILE-CONTROL.
                SELECT CONTATOS ASSIGN TO
-               "C:\Users\escrtorio\Documents\COBOL\M3\CONTATOS.txt"
+               "D:\Estudos_COBOL\M3\CONTATOS.txt"
                ORGANISATION IS SEQUENTIAL
                ACCESS MODE IS SEQUENTIAL
-               FILE STATUS IS WS-FS.
+               FILE STATUS IS WS-FS. *>File Status/ Status do arquivo.
 
 
        DATA DIVISION.
        FILE SECTION.
        FD CONTATOS.
        COPY FD_CONTT. *> IMPORTANDO O NOSSO LAYOUT.
+
 
        WORKING-STORAGE SECTION.
 
@@ -39,10 +40,58 @@
            88 EOF-OK           VALUE "S" FALSE "N". *> SE OK = "S" SENAO = "N"
 
        *> Criar outra variavel para loop, sair ou continuar o programa.
+       77 WS-EXIT              PIC X.
+           88 EXIT-OK          VALUE "F" FALSE "N".
 
 
        PROCEDURE DIVISION.
        MAIN-PROCEDURE.
+
+           DISPLAY"***CADASTRO DE CONTATOS***".
+       *> Antes de iniciar setar valor de false na variavel EXIT-OK.
+           SET EXIT-OK     TO FALSE.
+       *> Iniciar no P300-CADASTRA percorrendo ate que EXIT-OK seja = S.
+           PERFORM P300-CADASTRA THRU P300-FIM UNTIL EXIT-OK
+           PERFORM P900-FIM.
+
+       P300-CADASTRA.
+           SET EOF-OK      TO FALSE.
+           SET FS-OK       TO TRUE.
+
+           DISPLAY "PARA REGISTRAR UM CONTATO, INFORME: "
+           DISPLAY "Um numero para a Indetificao: "
+           ACCEPT WS-ID-CONTATO
+           DISPLAY "Um nome para o contato: "
+           ACCEPT WS-NM-CONTATO
+
+           *>Verificar se o arquivo existe.
+           OPEN EXTEND CONTATOS *>EXTENT melhor para arquivos nao indexados...
+               IF WS-FS EQUAL 35 THEN
+                   OPEN OUTPUT CONTATOS *>Se nao existir ele cria.
+               END-IF
+
+               IF FS-OK THEN *> Se o arquivo existir mova os dados.
+                   MOVE WS-ID-CONTATO      TO ID-CONTATO
+                   MOVE WS-NM-CONTATO      TO NM-CONTATO
+
+           *>Escreva os dados no meu layout
+                   WRITE REG-CONTATOS
+                   DISPLAY "Contato gravado com sucesso!"
+               ELSE
+                   DISPLAY "Erro ao abrir arquivo de contatos."
+                   DISPLAY "FILE STATUS: " WS-FS
+               END-IF
+
+               CLOSE CONTATOS
+
+            DISPLAY
+               "Tecle: "
+               "<Qualquer tecla> para continuar, ou <f> para finalizar"
+            ACCEPT WS-EXIT
+           .
+       P300-FIM.
+       P900-FIM.
+
 
             STOP RUN.
        END PROGRAM CADCONTT. *> BOA PRATICA, TAMANHO COM 8 CARACTERS.
