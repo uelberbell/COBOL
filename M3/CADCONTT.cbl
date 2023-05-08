@@ -13,9 +13,10 @@
            INPUT-OUTPUT SECTION.
            FILE-CONTROL.
                SELECT CONTATOS ASSIGN TO
-               "D:\Estudos_COBOL\M3\CONTATOS.txt"
-               ORGANISATION IS SEQUENTIAL
-               ACCESS MODE IS SEQUENTIAL
+               "D:\Estudos_COBOL\M3\CONTATOS.DAT"
+               ORGANISATION IS INDEXED
+               ACCESS MODE IS RANDOM
+               RECORD KEY IS ID-CONTATO *>Nossa chave primaria
                FILE STATUS IS WS-FS. *>File Status/ Status do arquivo.
 
 
@@ -65,7 +66,7 @@
            ACCEPT WS-NM-CONTATO
 
            *>Verificar se o arquivo existe.
-           OPEN EXTEND CONTATOS *>EXTENT melhor para arquivos nao indexados...
+           OPEN I-O CONTATOS *>EXTENT melhor para arquivos nao indexados...
                IF WS-FS EQUAL 35 THEN
                    OPEN OUTPUT CONTATOS *>Se nao existir ele cria.
                END-IF
@@ -76,7 +77,10 @@
 
            *>Escreva os dados no meu layout
                    WRITE REG-CONTATOS
-                   DISPLAY "Contato gravado com sucesso!"
+                       INVALID KEY *>Verifica se ja existe essa chave primaria.
+                           DISPLAY "CONTATO JA CADASTRADO"
+                       NOT INVALID KEY *>Se nao existir, cadastra o coantato.
+                           DISPLAY "Contato gravado com sucesso!"
                ELSE
                    DISPLAY "Erro ao abrir arquivo de contatos."
                    DISPLAY "FILE STATUS: " WS-FS
