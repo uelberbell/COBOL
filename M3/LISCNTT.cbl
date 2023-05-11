@@ -53,22 +53,16 @@
 
            SET EXIT-OK     TO FALSE.
 
-           PERFORM P300-CADASTRA THRU P300-FIM
+           PERFORM P300-LISTAR THRU P300-FIM
            PERFORM P900-FIM.
 
-       P300-CADASTRA.
+       P300-LISTAR.
            SET EOF-OK      TO FALSE.
            SET FS-OK       TO TRUE.
            SET WS-CONT     TO ZEROS. *>Resetando variavel.
 
-           DISPLAY "PARA REGISTRAR UM CONTATO, INFORME: "
-           DISPLAY "Um numero para a Indetificao: "
-           ACCEPT WS-ID-CONTATO
-           DISPLAY "Um nome para o contato: "
-           ACCEPT WS-NM-CONTATO
+           OPEN INPUT CONTATOS
 
-
-           OPEN I-O CONTATOS
                IF WS-FS EQUAL 35 THEN
                    OPEN OUTPUT CONTATOS
                END-IF
@@ -90,10 +84,6 @@
 
                CLOSE CONTATOS
 
-            DISPLAY
-               "Tecle: "
-               "<Qualquer tecla> para continuar, ou <f> para finalizar"
-            ACCEPT WS-EXIT
            .
        P300-FIM.
        P900-FIM.
