@@ -4,60 +4,62 @@
       * Purpose:CADASTRO DE CONTATOS. DOCUMENTAR TODO C�DIGO.
       ******************************************************************
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. LISCNTT. *> BOA PRATICA, TAMANHO COM 8 CARACTERS.
+       PROGRAM-ID. LISCNTT.
 
        ENVIRONMENT DIVISION.
        CONFIGURATION SECTION.
        SPECIAL-NAMES.
-           DECIMAL-POINT IS COMMA. *> PONTO DEVE SER CONSIDERADO VIRGULA.
+           DECIMAL-POINT IS COMMA.
            INPUT-OUTPUT SECTION.
            FILE-CONTROL.
                SELECT CONTATOS ASSIGN TO
                "D:\Estudos_COBOL\M3\CONTATOS.DAT"
                ORGANISATION IS INDEXED
-               ACCESS MODE IS RANDOM
-               RECORD KEY IS ID-CONTATO *>Nossa chave primaria
-               FILE STATUS IS WS-FS. *>File Status/Status do arquivo.
+               ACCESS MODE IS SEQUENTIAL
+               RECORD KEY IS ID-CONTATO
+               FILE STATUS IS WS-FS.
 
 
        DATA DIVISION.
        FILE SECTION.
        FD CONTATOS.
-       COPY FD_CONTT. *> IMPORTANDO O NOSSO LAYOUT.
+       COPY FD_CONTT.
 
 
        WORKING-STORAGE SECTION.
 
-       *> Variavel que recebe os dados totalizados do nosso layout.
+
        01 WS-REGISTRO              PIC X(22) VALUE SPACES.
-       01 FILLER REDEFINES WS-REGISTRO. *> Redefine novo espaco em memoria.
+       01 FILLER REDEFINES WS-REGISTRO.
            03 WS-ID-CONTATO        PIC 9(02).
            03 WS-NM-CONTATO        PIC X(20).
-       77 WS-FS        PIC 99. *> Variavel para verificar existencia do arquivo.
-           88 FS-OK    VALUE 0.
+       77 WS-FS                    PIC 99.
+           88 FS-OK            VALUE 0.
 
-       *> Agora vamos criar uma variavel para controlar a leitura do arquivo.
-       77 ES-EOF               PIC X. *> Testar true or false.
-           88 EOF-OK           VALUE "S" FALSE "N". *> SE OK = "S" SENAO = "N"
 
-       *> Criar outra variavel para loop, sair ou continuar o programa.
-       77 WS-EXIT              PIC X.
+       77 ES-EOF                   PIC X.
+           88 EOF-OK           VALUE "S" FALSE "N".
+
+
+       77 WS-EXIT                  PIC X.
            88 EXIT-OK          VALUE "F" FALSE "N".
+       77  WS-CONT                 PIC 9(003) VALUE ZEROS.
 
 
        PROCEDURE DIVISION.
        MAIN-PROCEDURE.
 
            DISPLAY"***CADASTRO DE CONTATOS***".
-       *> Antes de iniciar setar valor de false na variavel EXIT-OK.
+
            SET EXIT-OK     TO FALSE.
-       *> Iniciar no P300-CADASTRA percorrendo ate que EXIT-OK seja = S.
-           PERFORM P300-CADASTRA THRU P300-FIM UNTIL EXIT-OK
+
+           PERFORM P300-CADASTRA THRU P300-FIM
            PERFORM P900-FIM.
 
        P300-CADASTRA.
            SET EOF-OK      TO FALSE.
            SET FS-OK       TO TRUE.
+           SET WS-CONT     TO ZEROS. *>Resetando variavel.
 
            DISPLAY "PARA REGISTRAR UM CONTATO, INFORME: "
            DISPLAY "Um numero para a Indetificao: "
@@ -65,21 +67,21 @@
            DISPLAY "Um nome para o contato: "
            ACCEPT WS-NM-CONTATO
 
-           *>Verificar se o arquivo existe.
-           OPEN I-O CONTATOS *>EXTENT melhor para arquivos nao indexados...
+
+           OPEN I-O CONTATOS
                IF WS-FS EQUAL 35 THEN
-                   OPEN OUTPUT CONTATOS *>Se nao existir ele cria.
+                   OPEN OUTPUT CONTATOS
                END-IF
 
-               IF FS-OK THEN *> Se o arquivo existir mova os dados.
+               IF FS-OK THEN
                    MOVE WS-ID-CONTATO      TO ID-CONTATO
                    MOVE WS-NM-CONTATO      TO NM-CONTATO
 
-           *>Escreva os dados no meu layout
+
                    WRITE REG-CONTATOS
-                       INVALID KEY *>Verifica se ja existe essa chave primaria.
+                       INVALID KEY
                            DISPLAY "CONTATO JA CADASTRADO"
-                       NOT INVALID KEY *>Se nao existir, cadastra o coantato.
+                       NOT INVALID KEY
                            DISPLAY "Contato gravado com sucesso!"
                ELSE
                    DISPLAY "Erro ao abrir arquivo de contatos."
@@ -98,4 +100,4 @@
 
 
             STOP RUN.
-       END PROGRAM LISCNTT. *> BOA PRATICA, TAMANHO COM 8 CARACTERS.
+       END PROGRAM LISCNTT.
