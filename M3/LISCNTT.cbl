@@ -9,7 +9,7 @@
        ENVIRONMENT DIVISION.
        CONFIGURATION SECTION.
        SPECIAL-NAMES.
-           DECIMAL-POINT IS COMMA. *> PONTO DEVE SER CONSEIDERADO VIRGULA.
+           DECIMAL-POINT IS COMMA. *> PONTO DEVE SER CONSIDERADO VIRGULA.
            INPUT-OUTPUT SECTION.
            FILE-CONTROL.
                SELECT CONTATOS ASSIGN TO
@@ -17,7 +17,7 @@
                ORGANISATION IS INDEXED
                ACCESS MODE IS RANDOM
                RECORD KEY IS ID-CONTATO *>Nossa chave primaria
-               FILE STATUS IS WS-FS. *>File Status/ Status do arquivo.
+               FILE STATUS IS WS-FS. *>File Status/Status do arquivo.
 
 
        DATA DIVISION.
