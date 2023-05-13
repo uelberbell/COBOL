@@ -13,7 +13,8 @@
            INPUT-OUTPUT SECTION.
            FILE-CONTROL.
                SELECT CONTATOS ASSIGN TO
-               "D:\Estudos_COBOL\M3\CONTATOS.DAT"
+      *>          "D:\Estudos_COBOL\CONTATOS.DAT"
+                  "C:\Users\escrtorio\Documents\COBOL\CONTATOS.DAT"
                ORGANISATION IS INDEXED
                ACCESS MODE IS SEQUENTIAL
                RECORD KEY IS ID-CONTATO
@@ -23,12 +24,10 @@
        DATA DIVISION.
        FILE SECTION.
        FD CONTATOS.
-       COPY FD_CONTT.
+           COPY FD_CONTT.
 
 
        WORKING-STORAGE SECTION.
-
-
        01 WS-REGISTRO              PIC X(22) VALUE SPACES.
        01 FILLER REDEFINES WS-REGISTRO.
            03 WS-ID-CONTATO        PIC 9(02).
@@ -43,20 +42,17 @@
 
        PROCEDURE DIVISION.
        MAIN-PROCEDURE.
-
            DISPLAY"***LISTAGEM DE CONTATOS***".
-
            SET EXIT-OK     TO FALSE.
-
            PERFORM P300-LISTAR THRU P300-FIM
            PERFORM P900-FIM.
 
        P300-LISTAR.
            SET EOF-OK      TO FALSE.
            SET FS-OK       TO TRUE.
-           SET WS-CONT     TO ZEROS. *>Resetando variavel.
+           SET WS-CONT     TO 0. *>Resetando variavel.
 
-           OPEN INPUT CONTATOS
+           OPEN INPUT CONTATOS.
                IF FS-OK THEN
                PERFORM UNTIL EOF-OK
 
