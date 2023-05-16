@@ -30,10 +30,10 @@
        WORKING-STORAGE SECTION.
 
        *> Variavel que recebe os dados totalizados do nosso layout.
-       01 WS-REGISTRO              PIC X(22) VALUE SPACES.
+       01 WS-REGISTRO              PIC X(27) VALUE SPACES.
        01 FILLER REDEFINES WS-REGISTRO. *> Redefine novo espaco em memoria.
            03 WS-ID-CONTATO        PIC 9(02).
-           03 WS-NM-CONTATO        PIC X(20).
+           03 WS-NM-CONTATO        PIC X(25).
        77 WS-FS        PIC 99. *> Variavel para verificar existencia do arquivo.
            88 FS-OK    VALUE 0.
 
