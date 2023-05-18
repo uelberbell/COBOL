@@ -1,7 +1,8 @@
       ******************************************************************
       * Author:UELBER PEREIRA DE JESUS
       * Date:04/05/2023
-      * Purpose:CADASTRO DE CONTATOS. DOCUMENTAR TODO C�DIGO.
+      * Purpose:CADASTRO DE CONTATOS. DOCUMENTAR TODO CODIGO.
+      * Update: Transformando de programa para modulo.
       ******************************************************************
        IDENTIFICATION DIVISION.
        PROGRAM-ID. CADCONTT. *> BOA PRATICA, TAMANHO COM 8 CARACTERS.
