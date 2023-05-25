@@ -2,6 +2,7 @@
       * Author:UELBER PEREIRA DE JESUS
       * Date:04/05/2023
       * Purpose:LISTAR CONTATOS
+      * Update: 24/05/2023 - tranformando em modulo
       ******************************************************************
        IDENTIFICATION DIVISION.
        PROGRAM-ID. LISCNTT.
@@ -40,7 +41,15 @@
            88 EXIT-OK          VALUE "F" FALSE "N".
        77  WS-CONT                 PIC 9(003) VALUE ZEROS.
 
-       PROCEDURE DIVISION.
+
+       LINKAGE SECTION.*> AREA PARA COMUNICACAO ENTRE OS PROGRAMAS.
+       01 LK-COM-AREA.
+           03 LK-MENSAGEM      PIC X(20).
+
+
+       PROCEDURE DIVISION USING LK-COM-AREA.
+
+
        MAIN-PROCEDURE.
            DISPLAY"***LISTAGEM DE CONTATOS***".
            SET EXIT-OK     TO FALSE.
@@ -82,5 +91,5 @@
        P900-FIM.
 
 
-            STOP RUN.
+            GOBACK.
        END PROGRAM LISCNTT.

@@ -2,6 +2,7 @@
       * Author:UELBER PEREIRA DE JESUS
       * Date:04/05/2023
       * Purpose:ALTERAR CONTATOS.
+      * Update: Transformando de programa para modulo.
       ******************************************************************
        IDENTIFICATION DIVISION.
        PROGRAM-ID. ALTCONTT.
@@ -46,7 +47,13 @@
            88 EXIT-OK          VALUE "F" FALSE "N".
        77 WS-CONFIRM           PIC X VALUE SPACES.
 
-       PROCEDURE DIVISION.
+
+       LINKAGE SECTION.*> AREA PARA COMUNICACAO ENTRE OS PROGRAMAS.
+       01 LK-COM-AREA.
+           03 LK-MENSAGEM      PIC X(20).
+
+
+       PROCEDURE DIVISION USING LK-COM-AREA.
        MAIN-PROCEDURE.
 
            DISPLAY"***ALTERAR DE CONTATOS***".
@@ -103,5 +110,5 @@
        P900-FIM.
 
 
-            STOP RUN.
+            GOBACK.
        END PROGRAM ALTCONTT.

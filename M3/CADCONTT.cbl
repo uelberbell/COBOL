@@ -103,5 +103,5 @@
        P900-FIM.
 
 
-            STOP RUN.
+            GOBACK.
        END PROGRAM CADCONTT. *> BOA PRATICA, TAMANHO COM 8 CARACTERS.

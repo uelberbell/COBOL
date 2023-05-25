@@ -2,6 +2,7 @@
       * Author:UELBER PEREIRA DE JESUS
       * Date:04/05/2023
       * Purpose:CONSULTAR CONTATOS.
+      * Update: Transformando de programa para modulo.
       ******************************************************************
        IDENTIFICATION DIVISION.
        PROGRAM-ID. CONSCTT.
@@ -45,8 +46,12 @@
        77 WS-EXIT              PIC X.
            88 EXIT-OK          VALUE "F" FALSE "N".
 
+       LINKAGE SECTION.*> AREA PARA COMUNICACAO ENTRE OS PROGRAMAS.
+       01 LK-COM-AREA.
+           03 LK-MENSAGEM      PIC X(20).
 
-       PROCEDURE DIVISION.
+
+       PROCEDURE DIVISION USING LK-COM-AREA.
        MAIN-PROCEDURE.
 
            DISPLAY"***CONSULTA DE CONTATOS***".
@@ -87,5 +92,5 @@
        P900-FIM.
 
 
-            STOP RUN.
+            GOBACK.
        END PROGRAM CONSCTT.
