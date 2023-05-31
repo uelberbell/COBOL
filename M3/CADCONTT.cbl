@@ -14,8 +14,8 @@
            INPUT-OUTPUT SECTION.
            FILE-CONTROL.
                SELECT CONTATOS ASSIGN TO
-      *>          "D:\Estudos_COBOL\CONTATOS.DAT"
-               "C:\Users\escrtorio\Documents\COBOL\CONTATOS.DAT"
+               "D:\Estudos_COBOL\CONTATOS.DAT"
+      *>          "C:\Users\escrtorio\Documents\COBOL\CONTATOS.DAT"
                ORGANISATION IS INDEXED
                ACCESS MODE IS RANDOM
                RECORD KEY IS ID-CONTATO *>Nossa chave primaria
