@@ -48,13 +48,13 @@
 
        LINKAGE SECTION.*> AREA PARA COMUNICACAO ENTRE OS PROGRAMAS.
        01 LK-COM-AREA.
-           03 LK-MENSAGEM      PIC X(20).
+           03 LK-MENSAGEM      PIC X(40).
 
 
        PROCEDURE DIVISION USING LK-COM-AREA.
        MAIN-PROCEDURE.
 
-           DISPLAY"***CADASTRO DE CONTATOS***".
+           DISPLAY LK-MENSAGEM.
        *> Antes de iniciar setar valor de false na variavel EXIT-OK.
            SET EXIT-OK     TO FALSE.
        *> Iniciar no P300-CADASTRA percorrendo ate que EXIT-OK seja = S.
