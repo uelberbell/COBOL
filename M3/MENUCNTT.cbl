@@ -1,7 +1,7 @@
       ******************************************************************
       * Author:Uelber Pereira de Jesus
-      * Date:30/05/2023
-      * Purpose:Chamar programas externos
+      * Date:29/06/2023
+      * Purpose:Chamar programas externos - Revisão
       * Tectonics: cobc
       ******************************************************************
        IDENTIFICATION DIVISION.
