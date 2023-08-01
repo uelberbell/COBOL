@@ -67,7 +67,6 @@
 
                   WHEN OTHER
                    DISPLAY "OPCAO INVALIDA!"
-
                END-EVALUATE.
        P300-FIM.
        P900-FIM.
