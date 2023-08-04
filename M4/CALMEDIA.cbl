@@ -43,7 +43,8 @@
 
                    WHEN "1"
                    MOVE "INCLUIR NOVO ALUNO" TO WS-MENSAGEM
-                   CALL "CAMINHO DO PROGRAMA CHAMDO" USING WS-COM-AREA
+               CALL "C:\Users\escrtorio\Documents\COBOL\M4\CDALUNO.DAT"
+               USING WS-COM-AREA
 
 
                    WHEN "2"
