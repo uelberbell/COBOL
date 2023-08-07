@@ -43,7 +43,7 @@
 
                    WHEN "1"
                    MOVE "INCLUIR NOVO ALUNO" TO WS-MENSAGEM
-               CALL "C:\Users\escrtorio\Documents\COBOL\M4\CDALUNO.DAT"
+               CALL "C:\Users\escrtorio\Documents\COBOL\M4\CADALUNO.cbl"
                USING WS-COM-AREA
 
 

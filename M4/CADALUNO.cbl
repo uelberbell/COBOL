@@ -28,9 +28,9 @@
        WORKING-STORAGE SECTION.
        01 WS-CAD           PIC X(32) VALUE SPACES.
        01 FILLER REDEFINES WS-CAD.
-           03 WS-ID-CONTATO        PIC 9(03).
-           03 WS-NM-CONTATO        PIC A(20).
-           03 WS-TL-ALUNO          PIC A(09).
+           03 WS-ID-ALUNO          PIC 9(03).
+           03 WS-NM-ALUNO          PIC A(20).
+           03 WS-TL-ALUNO          PIC 9(09).
 
        77 WS-FS            PIC 99.
            88 FS-OK VALUE 0.
