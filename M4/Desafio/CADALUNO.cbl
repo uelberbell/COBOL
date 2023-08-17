@@ -13,7 +13,7 @@
            INPUT-OUTPUT SECTION.
            FILE-CONTROL.
                SELECT CDALUNO ASSIGN TO
-               "C:\Users\escrtorio\Documents\COBOL\M4\CDALUNO.DAT"
+             "C:\Users\escrtorio\Documents\COBOL\M4\Desafio\CDALUNO.DAT"
                ORGANIZATION IS INDEXED
                ACCESS MODE IS RANDOM
                RECORD KEY IS ID-ALUNO
