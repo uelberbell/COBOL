@@ -52,5 +52,58 @@
            DISPLAY LK-MENSAGEM.
            SET EXIT-OK     TO FALSE.
 
+      *>  *----------------------------------------------------------------------*
+      *>                              ***CADASTRO***
+      *>  *----------------------------------------------------------------------*
+
+
+           PERFORM P300CADASTRA THRU P300FIM UNTIL EXIT-OK
+           PERFORM P900FIM.
+
+
+           P300CADASTRA.
+
+               SET EOF-OK      TO FALSE.
+               SET FS-OK       TO TRUE.
+
+               DISPLAY "PARA REGISTRAR UM CONTATO INFORME UM NUMERO"
+                                                " DE INDENTIFICACAO: "
+               ACCEPT WS-ID-ALUNO.
+               DISPLAY "DIGITE O NOME DO ALUNO: "
+               ACCEPT WS-NM-ALUNO.
+               DISPLAY "DIGITE O TELEFONE DO ALUNO: "
+               ACCEPT WS-TL-ALUNO.
+
+
+      *>          VERIFICAR ARQUIVO
+               OPEN I-O CDALUNO
+                   IF WS-FS EQUAL 35 THEN
+                       OPEN OUTPUT CDALUNO
+                   END-IF.
+
+                   IF FS-OK THEN
+                       MOVE WS-ID-ALUNO TO ID-ALUNO
+                       MOVE WS-NM-ALUNO TO NM-ALUNO
+                       MOVE WS-TL-ALUNO TO TL-ALUNO
+
+      *>                 ESCREVER NO LAYOUT PARA ARQUIVO
+                   WRITE FD-ALUNO
+                       INVALID KEY
+                           DISPLAY "CONTATO JÁ CADASTRADO!"
+                       NOT INVALID KEY
+                           DISPLAY "CADASTRO REALIZADO COM SUCESSO"
+                           DISPLAY WS-CAD
+                   ELSE
+                       DISPLAY "ERRO AO ABRIR ARQUIVO DE ALUNOS"
+                       DISPLAY "FILE STATUS: " WS-FS
+                   END-IF.
+                   CLOSE CDALUNO
+
+
+                   DISPLAY "PRESSIONA QUALQUER TECLA PARA CONTINUAR"
+                                                   "OU <F> PARA SAIR"
+                                                   ACCEPT WS-EXIT.
+           P300FIM.
+           P900FIM.
             GOBACK.
        END PROGRAM CADALUNO.
